@@ -1,0 +1,25 @@
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+
+    - name: Check out the master branch
+      uses: actions/checkout@v3
+
+    - name: Print versions
+      run: |
+        uname -a
+        cabal --version
+        ghc --version
+
+    - name: Build static executable
+      run: cabal build all --enable-executable-static  --enable-split-sections
