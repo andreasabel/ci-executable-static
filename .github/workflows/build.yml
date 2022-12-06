@@ -20,6 +20,8 @@ jobs:
 
     - name: Print versions
       run: |
+        echo ${{ runner.os }}
+        echo ${{ runner.name }}
         uname -a
         cabal --version
         ghc --version
